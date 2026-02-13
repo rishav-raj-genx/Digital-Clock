@@ -17,6 +17,19 @@
     margin: 0;
 }
 
+canvas {
+    /* background-color: ; */
+  position: fixed;           
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  /* width: 100vw;
+  height: 100vh; */
+  z-index: -1;              
+  pointer-events: auto;
+}
+
 .plea{
 	border-radius:30px;
 	border:2px solid black;
@@ -32,7 +45,7 @@ body::before {
     background-image: url("zoro.jpg");
     background-size: cover;
     background-position: center;
-    opacity: 0.4;
+    opacity: 0.3;
     z-index: -1;
 }
     </style>
@@ -40,6 +53,7 @@ body::before {
 <body>
 
     <main>
+    <canvas></canvas>
     <div class="calender"></div>
     <button class="clock"></button>
     <div class="day"> Day -></div>

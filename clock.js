@@ -55,3 +55,58 @@ button.style.border = "2px solid black"
 
 body.style.letterSpacing = " 5px"
 // setTimeout(()=> clearInterval(timer), 5000)
+
+const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let vrect = [];
+
+for(let i = 0; i<2; i++){
+    var r = 200;
+    var x = Math.random() * (canvas.width - r * 2) + r;
+    var y = Math.random() * (canvas.height - r * 2) + r;
+    var dx = 2;
+    var dy = 2;
+    vrect.push(new Rectangle(x, y, dx, dy, r));
+}
+
+function animate(){
+    requestAnimationFrame(animate);
+
+    c.clearRect(0, 0, canvas.width, canvas.height);
+
+    for(let i = 0; i < vrect.length; i++){
+        vrect[i].draw();
+    }
+}
+
+animate();
+
+function Rectangle(x, y, dx, dy, r){
+
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.r = r;
+
+    this.draw = () => {
+        c.beginPath();
+        c.rect(this.x, this.y, 200, 200);
+        c.strokeStyle = "white";
+        c.lineWidth = 1;
+        c.stroke();
+        this.update();
+    }
+
+     this.update = () => {
+        if (this.x + this.r > innerWidth || this.x  < 0) this.dx = -this.dx;
+        if (this.y + this.r > innerHeight || this.y < 0) this.dy = -this.dy;
+
+        this.x += this.dx;
+        this.y += this.dy;
+    }
+}
